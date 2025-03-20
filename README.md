@@ -18,7 +18,7 @@ Starvoid is an action-packed space shooter where you navigate through the void, 
 ## Installation
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/starvoid.git
+   git clone https://github.com/7777Satish/Starvoid.git
    ```
 2. Open `index.html` in your browser.
 
