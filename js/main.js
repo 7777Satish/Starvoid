@@ -7,6 +7,8 @@ var ctx2 = canvas2.getContext('2d');
 var width = canvas.width = canvas2.width = 700*1.5;
 var height = canvas.height = canvas2.height = 500*1.5;
 
+var canvasBoudingRect = canvas.getBoundingClientRect();
+
 ctx.fillStyle = "#f1f1f1";
 ctx.strokeStyle = "#f1f1f1";
 ctx2.fillStyle = "violet";
@@ -114,12 +116,12 @@ function animateBG(){
 animateBG();
 
 var vibrationTriggerTimeStamp = 0;
-var hasdhfgashdfhsdhfgasdfhshdhfs = new Date().getTime();
+// var hasdhfgashdfhsdhfgasdfhshdhfs = new Date().getTime();
 function animate(){
-    requestAnimationFrame(animate);
+    // requestAnimationFrame(animate);
 
-    if((new Date().getTime() - hasdhfgashdfhsdhfgasdfhshdhfs) % 100 > 60){ return 123 }
-    else{
+    // if((new Date().getTime() - hasdhfgashdfhsdhfgasdfhshdhfs) % 100 > 60){ return 123 }
+    // else{
 
     ctx.save();
     if(isScreenVibrating || (new Date(new Date().getTime() - vibrationTriggerTimeStamp).getTime()) < 500){
@@ -288,10 +290,10 @@ function animate(){
 
 
     ctx.restore()
-    }
+    // }
 }
-
-animate();
+animate()
+setInterval(animate, 20);
 
 
 
@@ -359,11 +361,13 @@ window.addEventListener('keyup', (e)=>{
     }
 })
 
-var bafhasdhfgsahf =0;
+var bafhasdhfgsahf = 0;
 window.addEventListener('mousemove',(e)=>{
+    console.log(e.y-player.y - canvasBoudingRect.y, e.x-player.x - canvasBoudingRect.x)
     // var a = Math.atan2(e.x-width/2, e.y-height/2);
-    var a = Math.atan2(e.x-player.x, e.y-player.y);
-    player.rotate = -1*a+Math.PI;
+    // console.log(e.y- (player.y + window.innerWidth/2-width/2), e.x- (player.x + window.innerHeight/2 - height/2))
+    var a = Math.atan2(e.y-player.y - canvasBoudingRect.y/2, e.x-player.x - canvasBoudingRect.x/2);
+    player.rotate = a - Math.PI/2;
 })
 
 window.addEventListener('mousedown', (e)=>{
